@@ -1,6 +1,8 @@
-import java.util.HashSet;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.toList;
 
 public class Main {
 
@@ -16,15 +18,10 @@ public class Main {
     interface GetPoints{
         public int get(Team team);
     }
-
-//    static class Logarifm{
-//
-//
-//        private static void print(double x, Get get){
-//
-//            System.out.println(Math.log(get.get(x)));
-//        }
-//    }
+//public static Map<String,Integer> getStringTeam(Stream<Team> teamStream){
+//       // return teamStream.collect(Collectors.groupingBy(Team::getPoints),Collectors.toCollection(HashMap<String,Integer>.getClass()))
+//    return teamStream.map()
+//}
 
 
     public static void printTeamName(Team team, GetName gn){
@@ -32,24 +29,21 @@ public class Main {
     }
     public static void main(String[] args)  {
 Team real = new Team("real madrid",50);
-Team barca = new Team("barcelona", 45);
+Team barca = new Team("barcelona", 55);
 printTeamName(real, c->c.getName());
-//
-//
-//     Set<Double> doubleSet = new HashSet<>();
-//     doubleSet.add(1D);
-//     doubleSet.add(0.2D);
-//        Set<Double> newSet = new HashSet<>();
-//              doubleSet.stream().forEach(x->{
-//
-//         x= Math.random();
-//        newSet.add(x);
-//         System.out.println(x);}
-//     );
-//        System.out.println(newSet.stream().filter(x->x>0.5).count());
-//
 
+Map<String,Integer> teamMap = new HashMap<>();
+teamMap.put(real.getName(),real.getPoints());
+teamMap.put(barca.getName(),barca.getPoints());
+        Map<String,Integer> teamSorted = new HashMap<>();
+teamMap.forEach((String,Integer)-> {
+    Collectors.groupingBy(Team::getPoints);
+    teamSorted.put(String,Integer);
+   });
 
-
+teamSorted.forEach((String,Integer)-> System.out.println(String+ " "+Integer));
+List<Map.Entry<String, Integer>> integers = teamSorted.entrySet().stream().filter(stringIntegerEntry ->
+    stringIntegerEntry.getKey().equals("barcelona")).collect(toList());
+integers.forEach(value-> System.out.println(value));
     }
 }
